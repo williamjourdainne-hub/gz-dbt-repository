@@ -35,4 +35,48 @@ sources:
               - not_null
          - name: sheeping_fee
            description: Ship cost for each order
-        
+      - name: adwords
+        identifier: raw_gz_adwords 
+        description: costs and benefits of each advertising campaign
+      - name: bing
+        identifier: raw_gz_bing
+        description: costs and benefits of each advertising campaign
+      - name: criteo
+        identifier: raw_gz_criteo
+        description: costs and benefits of each advertising campaign
+      - name: facebook
+        identifier: raw_gz_facebook
+        description: costs and benefits of each advertising campaign
+      - name: int_campaigns
+        identifier: int_campaigns
+        description: union join des autres 
+        columns:
+         - name: date_source_campkey
+           description: unique ID of each order
+           tests:
+              - unique:
+                   column_name: "date_date || '-' || paid_source|| '-' || campaign_key"
+                            - name: ads_cost
+           description: cost of ad campaign
+           tests:
+              - dbt_utils.not_null_proportion:
+              arguments:
+                at_least: 0.80
+          - name: impression
+           description: cost of ad campaign
+           tests:
+          - dbt_utils.not_null_proportion:
+              arguments:
+                at_least: 0.80
+         - name: click
+           description: cost of ad campaign
+           tests:
+          - dbt_utils.not_null_proportion:
+              arguments:
+                at_least: 0.80
+         - name: date_date
+           description: cost of ad campaign
+           tests:
+          - dbt_utils.not_null_proportion:
+              arguments:
+                at_least: 0.80
